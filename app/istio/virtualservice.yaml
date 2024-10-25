@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: podinfo
+  namespace: askar-karimov
+spec:
+  gateways:
+    - istio-system/private
+  # hosts:
+  #   - podinfo.askar-karimov.<url>
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: frontend
+        port:
+          number: 80
